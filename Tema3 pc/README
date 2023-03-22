@@ -1,0 +1,18 @@
+JSON parser folosit: parson
+Justificare: am zis sa folosesc ceva din lista de biblioteci recomandate, m-am uitat la ea si am vazut ca era relativ usor de folosit, asa ca am ales-o pe asta
+
+Implementare:
+Se citeste tipul comenzii, se reinitializeaza comunicarea cu serverul (pt ca era o conexiune de durata destul de scurta, si se intrerupea), iar apoi in functie
+de tipul comenzii se citesc parametrii si se verifica formatul acestora sau se construiesc JSON-urile respective. Unde este nevoie de token sau JWT, se verifica
+sa nu fie empty acestea, deoarece asta inseamna automat ca utilizatorul nu s-a conectat / nu are acces. Dupa primirea datelor, se apeleaza functiile respective
+fiecarei tip de actiune. Formatul functiilor e cam acelasi: se construieste cererea HTTP ca in enunt, se trimite cererea, se asteapta raspunsul si in functie de
+acesta, functia va face un anumit lucru. I'm not too sure what I should say here. Am comentat in cod ce se intampla la fiecare pas al fiecarei functii.
+
+sign_up - face inregistrare
+login - face conectarea
+getaccess - ofera utilizatorului acces catre biblioteca, daca e conectat
+view_info - afiseaza informatii sumare despre toate cartile din biblioteca
+check_book - afiseaza informatii detaliate despre o carte din biblioteca in functie de ID, daca aceasta exista
+add_book - adauga o carte in biblioteca
+delete_book - sterge o carte din biblioteca
+logout - deconecteaza utilizatorul
